@@ -13,6 +13,7 @@ export default function NewPost(props) {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({ topic, keywords }),
     });
