@@ -1,11 +1,13 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { AppLayout } from "../../components/AppLayout";
+import { getAppProps } from "../../utils/getAppProps";
 
 export default function NewPost(props) {
+  const router = useRouter();
   const [topic, setTopic] = useState("");
   const [keywords, setKeywords] = useState("");
-  const [postContent, setPostContent] = useState();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,13 +15,14 @@ export default function NewPost(props) {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({ topic, keywords }),
     });
     const json = await response.json();
-    setPostContent(json.post.postContent);
-    console.log(json.post.postContent);
+    console.log("RESPONSE: ", json);
+    if (json?.postId) {
+      router.push(`/post/${json.postId}`);
+    }
   };
 
   return (
@@ -49,10 +52,6 @@ export default function NewPost(props) {
           Generate
         </button>
       </form>
-      <div
-        className="max-w-screen-sm p-10"
-        dangerouslySetInnerHTML={{ __html: postContent }}
-      />
     </div>
   );
 }
@@ -61,8 +60,11 @@ NewPost.getLayout = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>;
 };
 
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {},
-  };
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(context) {
+    const props = await getAppProps(context);
+    return {
+      props,
+    };
+  },
 });
