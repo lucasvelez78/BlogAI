@@ -47,6 +47,7 @@ const handler = async (req, res) => {
             },
             $setOnInsert: {
               auth0Id,
+              availableTokens: 20,
             },
           },
           {
