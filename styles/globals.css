@@ -56,6 +56,6 @@
 
 @layer components {
   .btn {
-    @apply bg-[#4E31AA] tracking-wider w-full text-center text-white cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-[#3A1078] transition-colors block;
+    @apply disabled:bg-violet-300 disabled:cursor-not-allowed bg-[#4E31AA] tracking-wider w-full text-center text-white cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-[#3A1078] transition-colors block;
   }
 }

@@ -4,14 +4,17 @@ import { getAppProps } from "../utils/getAppProps";
 
 export default function TokenTopup() {
   const handleClick = async () => {
-    await fetch("/api/addTokens", {
+    const result = await fetch("/api/addTokens", {
       method: "POST",
     });
+    const json = await result.json();
+    console.log("Result: ", json);
+    window.location.href = json.session.url;
   };
 
   return (
     <div>
-      <h1>Token-topup</h1>
+      <h1>Buy your tokens here!</h1>
       <button className="btn" onClick={handleClick}>
         Add tokens
       </button>
