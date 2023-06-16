@@ -44,7 +44,7 @@ export const AppLayout = ({
             </span>
           </Link>
         </div>
-        <div className="flex-1 bg-gradient-to-b from-[#000839] to-[#005082] overflow-auto px-4">
+        <div className="flex-1 bg-gradient-to-b from-[#000839] to-[#572be5] overflow-auto px-4">
           {posts.map((post) => (
             <Link
               key={post._id}
@@ -67,7 +67,7 @@ export const AppLayout = ({
             </div>
           )}
         </div>
-        <div className="bg-[#005082] flex items-center gap-2 border-t border-t-[#000839]/30 h-20 px-2">
+        <div className="bg-[#572be5] flex items-center gap-2 border-t border-t-[#000839]/30 h-20 px-2">
           {user ? (
             <>
               <div className="min-w-[50px]">

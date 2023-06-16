@@ -13,11 +13,15 @@ export default function TokenTopup() {
   };
 
   return (
-    <div>
-      <h1>Buy your tokens here!</h1>
-      <button className="btn" onClick={handleClick}>
-        Add tokens
-      </button>
+    <div className="h-full overflow-hidden">
+      <div className="w-full h-full flex flex-col overflow-auto">
+        <div className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200 text-center">
+          <h1 className="text-slate-600">Buy your tokens here</h1>
+          <button className="btn" onClick={handleClick}>
+            Add tokens
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
